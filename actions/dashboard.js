@@ -10,7 +10,7 @@ import { WithdrawalRequestEmail } from "@/emails/WithdrawalRequestEmail";
 import { render } from "@react-email/render";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const ADMIN_EMAIL = "piyushagarwalvo@gmail.com";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "itsdeepakkumar07@gmail.com";
 
 const withdrawalLimiter = createRateLimiter({
   refillRate: 1,
@@ -184,7 +184,7 @@ export const requestWithdrawal = async ({
         })
       );
       await resend.emails.send({
-        from: "Prept <onboarding@resend.dev>",
+        from: "PrepBuddy <onboarding@resend.dev>",
         to: ADMIN_EMAIL,
         subject: `Withdrawal Request — ${dbUser.name} · ${credits} credits`,
         html,

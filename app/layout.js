@@ -20,8 +20,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata = {
-  title: "Prept",
-  description: "",
+  title: "PrepBuddy — AI Mock Interviews & Practice",
+  description: "PrepBuddy connects job seekers with top interviewers and AI-powered interview practice.",
 };
 
 export default function RootLayout({ children }) {
@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
             <Toaster richColors />
 
             <footer className="relative z-10 border-t border-white/7 py-12  mx-auto px-6 flex flex-wrap items-center justify-center text-stone-400">
-              Made with ❤️ by RoadsideCoder
+              Made with ❤️ by Deepak
             </footer>
           </ThemeProvider>
         </body>

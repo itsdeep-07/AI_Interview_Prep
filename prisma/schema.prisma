@@ -91,6 +91,7 @@ model User {
   bookingsAsInterviewer Booking[]           @relation("InterviewerBookings")
   transactions          CreditTransaction[]
   payouts               Payout[]
+  aiInterviews          AIInterview[]
 }
 
 // ─── AVAILABILITY ────────────────────────────────────────
@@ -183,3 +184,24 @@ model Payout {
   @@index([status, createdAt])
   @@index([interviewerId, status])
 }
+
+// ─── AI INTERVIEW SESSIONS ────────────────────────────────
+
+model AIInterview {
+  id             String   @id @default(uuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role           String
+  targetCompany  String?
+  jobDescription String?  @db.Text
+  resumeText     String?  @db.Text
+  interviewType  String   @default("MIXED") // TECHNICAL | BEHAVIORAL | MIXED
+  status         String   @default("IN_PROGRESS") // IN_PROGRESS | COMPLETED
+  questions      Json?    // Array of { question, answer, feedback, rating }
+  scorecard      Json?    // Final evaluation & recommendations
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId, createdAt])
+}
+

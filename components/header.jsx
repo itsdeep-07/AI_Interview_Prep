@@ -1,11 +1,17 @@
 import { checkUser } from "@/lib/checkUser";
 import { Button } from "./ui/button";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 import Link from "next/link";
-import Image from "next/image";
+import Logo from "./Logo";
 import RoleRedirect from "./RoleRedirect";
 import CreditButton from "./CreditButton";
-import { CalendarDays, Users } from "lucide-react";
+import { CalendarDays, Sparkles, Users } from "lucide-react";
 
 const Header = async () => {
   const user = await checkUser();
@@ -13,13 +19,7 @@ const Header = async () => {
   return (
     <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-3 sm:px-10 py-3 border-b border-white/7 backdrop-blur-xl">
       <Link href="/">
-        <Image
-          src="/logo.png"
-          alt="Prept Logo"
-          width={100}
-          height={100}
-          className="h-11 w-auto"
-        />
+        <Logo />
       </Link>
 
       {user && <RoleRedirect role={user.role} />}
@@ -29,12 +29,19 @@ const Header = async () => {
           <SignInButton mode="modal">
             <Button variant="ghost">Sign in</Button>
           </SignInButton>
-          <SignInButton mode="modal">
+          <SignUpButton mode="modal">
             <Button variant="gold">Get started →</Button>
-          </SignInButton>
+          </SignUpButton>
         </SignedOut>
 
         <SignedIn>
+          <Button variant="ghost" asChild className="text-amber-400 hover:text-amber-300">
+            <Link href="/ai-interview/setup">
+              <Sparkles size={16} className="text-amber-400 animate-pulse" />
+              <span className="hidden sm:inline font-medium">AI Practice</span>
+            </Link>
+          </Button>
+
           {user?.role === "INTERVIEWER" && (
             <Button variant="ghost" asChild>
               <Link href="/dashboard">Dashboard</Link>

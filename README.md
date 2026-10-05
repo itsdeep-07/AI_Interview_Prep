@@ -1,6 +1,6 @@
-# Prept: AI-Powered Interview Marketplace
+# PrepBuddy: AI-Powered Interview Marketplace
 
-Prept is a modern platform designed to connect interviewers and candidates for mock interviews. It combines real-time video conferencing with AI-driven insights to help job seekers prepare for technical and behavioral interviews.
+PrepBuddy is a modern platform designed to connect interviewers and candidates for mock interviews. It combines real-time video conferencing with AI-driven insights to help job seekers prepare for technical and behavioral interviews.
 
 ## Overview
 
